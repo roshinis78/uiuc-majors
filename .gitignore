@@ -1,0 +1,7 @@
+# VSCODE #
+##########
+.vscode/
+
+# JUPYTER NOTEBOOK #
+####################
+.ipynb_checkpoints/
