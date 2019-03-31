@@ -1,7 +1,7 @@
 
 // Using jQuery, read our data and call visualize(...) only once the page is ready:
 $(function() {
-  d3.csv("football.csv").then(function(data) {
+  d3.csv("relevant_data.csv").then(function(data) {
     // Write the data to the console for debugging:
     console.log(data);
 
