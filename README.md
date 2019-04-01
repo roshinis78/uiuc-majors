@@ -1,5 +1,5 @@
 # Diversity at University of Illinois Urbana-Champaign
-We created a slope graph that shows the change in diversity at UIUC in the different colleges across the years. Each slope line within a college represents a major, and the slope of each line represents the change in the number of people in the major, and the change in color represents the change in diveresity of the major.
+We created a slope graph that shows the change in diversity at UIUC in the different colleges across the years. Each slope line within a college represents a major, and the slope of each line represents the change in the number of people in the major, and the change in color represents the change in diversity of the major.
 
 To do:
 - get slopes working
