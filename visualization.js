@@ -28,40 +28,42 @@ var visualize = function(data) {
 
   // Visualization Code:
 
-  var config = {
-    numColleges: 7,
-    spacing: 50,
-    labelPosition: [0, 75, 280, 390, 510, 650, 850],
-    colPosition: [20, 160, 310, 425, 550, 720, 865]
-  }
+   var config = {
+      numColleges: 7,
+      spacing: 50,
+      labelPosition: [0, 75, 280, 390, 510, 650, 850],
+      colPosition: [20, 160, 310, 425, 550, 720, 865]
+   }
 
-  // get an array of all the colleges
-  var allColleges = [...new Set(data.map(item => item.College))];
-  
+   // get an array of all the colleges
+   var allColleges = [...new Set(data.map(item => item.College))];
+   
 
-  console.log(allColleges);
+   console.log(allColleges);
 
-  svg.selectAll('text')
-     .data(allColleges)
-     .enter()
-     .append('text')
-     .text(function(d, i) {
-        return allColleges[i];
-     })
-     .attr('x', function(d, i) {
-      return config.labelPosition[i];
-     })
-     .attr('y', height + 40)
+   svg.selectAll('text')
+      .data(allColleges)
+      .enter()
+      .append('text')
+      .text(function(d, i) {
+         return allColleges[i];
+      })
+      .attr("id", function(d, i) {
+         return d.replace(/ /g, "-");
+      })
+      .attr('x', function(d, i) {
+         return config.labelPosition[i];
+      })
+      .attr('y', height + 40)
 
+   var vertScale = d3.scaleLinear()
+                     .domain([1200, 0]) // get the maximum number
+                     .range([0, height]);
 
-  var vertScale = d3.scaleLinear()
-                    .domain([1200, 0]) // get the maximum number
-                    .range([0, height]);
-
-  var positionMap = new Map();
-  allColleges.forEach(function(element, index) {
-    positionMap.set(element, config.colPosition[index]);
-  });
+   var positionMap = new Map();
+   allColleges.forEach(function(element, index) {
+      positionMap.set(element, config.colPosition[index]);
+   });
 
   console.log(positionMap);
 
@@ -201,14 +203,17 @@ var visualize = function(data) {
      .attr("stroke-width", 20)
      .attr("stroke", "white")
      .attr("opacity", 0)
-     .on("mouseover", function(d, i){
+     .on("mouseover", function(d, i) {
+         d3.select("#" + d.College.replace(/ /g, "-")).text(d["Major Name"]);
+         console.log(d["Major Name"]);
      		document.getElementById("line-" + i).style.opacity = 1;
      		document.getElementById("start-" + i).style.opacity = 1;
      		document.getElementById("end-" + i).style.opacity = 1;
      		document.getElementById("number-left-" + i).style.opacity = 1;
      		document.getElementById("number-right-" + i).style.opacity = 1;
      }).on("mouseout", function(d, i){
-     		document.getElementById("line-" + i).style.opacity = 0.5;
+         d3.select("#" + d.College.replace(/ /g, "-")).text(d.College);
+         document.getElementById("line-" + i).style.opacity = 0.5;
      		document.getElementById("start-" + i).style.opacity = 0.5;
      		document.getElementById("end-" + i).style.opacity = 0.5;
      		document.getElementById("number-left-" + i).style.opacity = 0;
