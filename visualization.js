@@ -71,8 +71,8 @@ var visualize = function (data) {
 
   svg
     .append('text')
-    .html('UIUC Undergraduate Major Distributions')
-    .attr('x', 400)
+    .html('UIUC Undergraduate Major Distributions from 2004 to 2018')
+    .attr('x', 320)
     .attr('y', 0)
     .style('font', '20px calibri')
     .style('fontWeight', 'bold')
@@ -222,7 +222,6 @@ var visualize = function (data) {
     .attr('opacity', 0)
     .on('mouseover', function (d, i) {
       d3.select('#' + d.College.replace(/ /g, '-')).text(d['Major Name'])
-      console.log(d['Major Name'])
       document.getElementById('line-' + i).style.opacity = 1
       document.getElementById('start-' + i).style.opacity = 1
       document.getElementById('end-' + i).style.opacity = 1
