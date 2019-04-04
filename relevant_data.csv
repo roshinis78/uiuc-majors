@@ -1,32 +1,32 @@
-College,Major Name,2004,2018
-ACES,Animal Sciences,501,528
-ACES,Crop Sciences,84,132
-ACES,Food Science & Human Nutrition,357,333
-ACES,Horticulture,74,1
-ACES,Human Development & Family St,193,235
-ACES,Natural Resrcs & Environ Sci,201,241
-Applied Health Sciences,Community Health,347,608
-Applied Health Sciences,Kinesiology,543,564
-Applied Health Sciences,Speech & Hearing Science,224,242
-Business,Finance,771,630
-Education,Accountancy,897,817
-Education,Advertising,242,626
-Education,Early Childhood Education,66,50
-Education,Elementary Education,292,294
-Education,Special Education,71,107
-Engineering,Bioengineering,22,266
-Engineering,Civil Engineering,450,671
-Engineering,Computer Engineering,636,1184
-Engineering,Computer Science,720,1054
-Engineering,Electrical Engineering,868,913
-Engineering,Engineering Mechanics,72,112
-Engineering,Engineering Physics,102,275
-Engineering,Industrial Engineering,70,271
-Engineering,Materials Science & Engr,225,325
-Engineering,Mechanical Engineering,777,860
-Fine and Applied Arts,Architectural Studies,547,416
-LAS,Biochemistry,178,169
-LAS,Chemical Engineering,304,653
-LAS,Chemistry,125,234
-LAS,Geology,14,44
-LAS,Physics,84,202
+College,Major Name,2004,2004_male,2004_female,2018,2018_male,2018_female
+ACES,Animal Sciences,501,120,381,528,90,436
+ACES,Crop Sciences,84,62,21,132,73,59
+ACES,Food Science & Human Nutrition,357,81,276,333,83,250
+ACES,Horticulture,74,50,24,1,0,1
+ACES,Human Development & Family St,193,10,183,235,20,214
+ACES,Natural Resrcs & Environ Sci,201,113,88,241,98,143
+Applied Health Sciences,Community Health,347,68,279,608,152,456
+Applied Health Sciences,Kinesiology,543,195,348,564,251,313
+Applied Health Sciences,Speech & Hearing Science,224,8,216,242,10,232
+Business,Finance,771,521,250,630,450,180
+Education,Accountancy,897,482,414,817,386,431
+Education,Advertising,242,54,188,626,202,424
+Education,Early Childhood Education,66,3,63,50,2,48
+Education,Elementary Education,292,24,268,294,20,274
+Education,Special Education,71,5,66,107,14,92
+Engineering,Bioengineering,22,18,4,266,129,137
+Engineering,Civil Engineering,450,347,103,671,487,184
+Engineering,Computer Engineering,636,588,48,1184,1032,152
+Engineering,Computer Science,720,643,76,1054,742,311
+Engineering,Electrical Engineering,868,745,123,913,786,127
+Engineering,Engineering Mechanics,72,58,14,112,96,16
+Engineering,Engineering Physics,102,85,17,275,228,47
+Engineering,Industrial Engineering,70,43,27,271,202,69
+Engineering,Materials Science & Engr,225,170,55,325,233,92
+Engineering,Mechanical Engineering,777,689,88,860,671,189
+Fine and Applied Arts,Architectural Studies,547,308,238,416,249,167
+LAS,Biochemistry,178,81,96,169,84,85
+LAS,Chemical Engineering,304,199,105,653,439,212
+LAS,Chemistry,125,69,56,234,137,97
+LAS,Geology,14,9,5,44,27,17
+LAS,Physics,84,65,19,202,156,46
