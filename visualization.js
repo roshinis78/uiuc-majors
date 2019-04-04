@@ -11,7 +11,7 @@ $(function () {
 
 var visualize = function (data) {
   // Boilerplate:
-  var margin = { top: 40, right: 0, bottom: 50, left: 50 }
+  var margin = { top: 50, right: 0, bottom: 50, left: 50 }
 
   var width = 1216 - margin.left - margin.right
 
@@ -30,11 +30,8 @@ var visualize = function (data) {
   // Visualization Code:
 
   var config = {
-    numColleges: 7,
-    spacing: 50,
-    labelPosition: [0, 75, 280, 390, 510, 650, 850],
-    colPosition: [20, 160, 310, 425, 550, 720, 865],
-    pointDisp: 40
+    pointDisp: 40,
+    lineSpacing: 15
   }
 
   var color = d3
@@ -126,11 +123,6 @@ var visualize = function (data) {
     })
     .attr('opacity', 0.5)
 
-  console.log(startX)
-  console.log(startY)
-  console.log(endX)
-  console.log(endY)
-
   svg
     .selectAll('number-left')
     .data(data)
@@ -194,10 +186,109 @@ var visualize = function (data) {
     })
     .attr('stroke-width', 1)
     .attr('stroke', function (d, i) {
-      var m = (endY[i] - startY[i]) / (endX[i] - startX[i])
-      return color(m)
+      return color((endY[i] - startY[i]) / (endX[i] - startX[i]))
     })
     .attr('opacity', 0.5)
+
+  svg
+    .selectAll('tooltip-background')
+    .data(data)
+    .enter()
+    .append('rect')
+    .attr('class', 'tooltip-background')
+    .attr('id', function (d, i) {
+      return 'tooltip-background-' + i
+    })
+    .attr('opacity', 0)
+    .style('stroke', 'black')
+    .style('fill', 'black')
+    .attr('x', function (d, i) {
+      return startX[i] - 35
+    })
+    .attr('y', function (d, i) {
+      y = startY[i]
+      if (endY[i] < startY[i]) {
+        y = endY[i]
+      }
+      return y - 100
+    })
+    .attr('rx', '5')
+    .attr('ry', '5')
+    .attr('width', '150')
+    .attr('height', '70')
+
+  var tooltip = svg
+    .selectAll('tooltip')
+    .data(data)
+    .enter()
+    .append('text')
+    .attr('id', function (d, i) {
+      return 'tooltip-' + i
+    })
+    .attr('x', function (d, i) {
+      return startX[i] - 30
+    })
+    .attr('y', function (d, i) {
+      y = startY[i]
+      if (endY[i] < startY[i]) {
+        y = endY[i]
+      }
+      return y - 83
+    })
+    .attr('opacity', 0)
+    .style('font', '14px calibri')
+    .style('fill', 'white')
+  tooltip
+    .append('tspan')
+    .attr('class', 'tooltip-major')
+    .text(function (d, i) {
+      return d['Major Name']
+    })
+  tooltip
+    .append('tspan')
+    .attr('class', 'tooltip-growth')
+    .text(function (d, i) {
+      sign = d['2018'] - d['2004'] > 0 ? '+' : ''
+      return 'Overall: ' + sign + (d['2018'] - d['2004'])
+    })
+    .attr('x', function (d, i) {
+      return startX[i] - 30
+    })
+    .attr('dy', config.lineSpacing)
+    .style('fontWeight', 'bolder')
+    .style('fill', function (d, i) {
+      return d['2018'] - d['2004'] > 0 ? 'chartreuse' : 'red'
+    })
+  tooltip
+    .append('tspan')
+    .attr('class', 'tooltip-growth')
+    .text(function (d, i) {
+      sign = d['2018_illinois'] - d['2004_illinois'] > 0 ? '+' : ''
+      return 'Illinois: ' + sign + (d['2018_illinois'] - d['2004_illinois'])
+    })
+    .attr('x', function (d, i) {
+      return startX[i] - 30
+    })
+    .attr('dy', config.lineSpacing)
+    .style('fontWeight', 'bolder')
+    .style('fill', function (d, i) {
+      return d['2018_illinois'] - d['2004_illinois'] > 0 ? 'chartreuse' : 'red'
+    })
+  tooltip
+    .append('tspan')
+    .attr('class', 'tooltip-growth')
+    .text(function (d, i) {
+      sign = d['2018_oos'] - d['2004_oos'] > 0 ? '+' : ''
+      return 'Non-Illinois: ' + sign + (d['2018_oos'] - d['2004_oos'])
+    })
+    .attr('x', function (d, i) {
+      return startX[i] - 30
+    })
+    .attr('dy', config.lineSpacing)
+    .style('fontWeight', 'bolder')
+    .style('fill', function (d, i) {
+      return d['2018_oos'] - d['2004_oos'] > 0 ? 'chartreuse' : 'red'
+    })
 
   svg
     .selectAll('slope-line-area')
@@ -221,7 +312,8 @@ var visualize = function (data) {
     .attr('stroke', 'white')
     .attr('opacity', 0)
     .on('mouseover', function (d, i) {
-      d3.select('#' + d.College.replace(/ /g, '-')).text(d['Major Name'])
+      document.getElementById('tooltip-' + i).style.opacity = 1
+      document.getElementById('tooltip-background-' + i).style.opacity = 0.6
       document.getElementById('line-' + i).style.opacity = 1
       document.getElementById('start-' + i).style.opacity = 1
       document.getElementById('end-' + i).style.opacity = 1
@@ -229,7 +321,8 @@ var visualize = function (data) {
       document.getElementById('number-right-' + i).style.opacity = 1
     })
     .on('mouseout', function (d, i) {
-      d3.select('#' + d.College.replace(/ /g, '-')).text(d.College)
+      document.getElementById('tooltip-' + i).style.opacity = 0
+      document.getElementById('tooltip-background-' + i).style.opacity = 0
       document.getElementById('line-' + i).style.opacity = 0.5
       document.getElementById('start-' + i).style.opacity = 0.5
       document.getElementById('end-' + i).style.opacity = 0.5
