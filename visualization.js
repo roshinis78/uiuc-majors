@@ -11,7 +11,7 @@ $(function () {
 
 var visualize = function (data) {
   // Boilerplate:
-  var margin = { top: 50, right: 0, bottom: 50, left: 50 }
+  var margin = { top: 40, right: 0, bottom: 50, left: 50 }
 
   var width = 1216 - margin.left - margin.right
 
@@ -37,6 +37,11 @@ var visualize = function (data) {
     pointDisp: 40
   }
 
+  var color = d3
+    .scaleLinear()
+    .domain([-1, 0, 1])
+    .range(['green', 'black', 'red'])
+
   // get an array of all the colleges with two spaces for axis padding
   var allColleges = ['', ...new Set(data.map(item => item.College)), '']
 
@@ -49,7 +54,7 @@ var visualize = function (data) {
   var countScale = d3
     .scaleLinear()
     .domain([1200, 0]) // get the maximum number
-    .range([0, height])
+    .range([margin.top, height])
   var vertAxis = d3.axisLeft(countScale)
 
   svg
@@ -188,7 +193,10 @@ var visualize = function (data) {
       return endY[i]
     })
     .attr('stroke-width', 1)
-    .attr('stroke', 'black')
+    .attr('stroke', function (d, i) {
+      var m = (endY[i] - startY[i]) / (endX[i] - startX[i])
+      return color(m)
+    })
     .attr('opacity', 0.5)
 
   svg
