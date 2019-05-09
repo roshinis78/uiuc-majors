@@ -7,4 +7,4 @@ This visualization utilizes a slope graph to explore how the undergraduate enrol
 
 > Tip: Hover over the lines for more information!
 
-<img src="https://imgur.com/jV2C2cG" alt="Image of the slope graph." >
+![Image of the slope graph.]("https://i.imgur.com/jV2C2cG.png")
