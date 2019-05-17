@@ -1,6 +1,6 @@
 # UIUC Undergraduate Major Distributions from 2004 to 2018
 
-### Created by Roshini Saravanakumar, Eunice Zhou, Mengjing Shi and Quentin Bu 
+### Created by Roshini Saravanakumar, Eunice Zhou, Mengjing Shi and Jacob Fuenhe 
 
 > Use `python -m http.server` within your copy of the repository to view the visualization.
 
